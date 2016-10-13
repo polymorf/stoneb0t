@@ -326,7 +326,7 @@ class IRCBot(irc.bot.SingleServerIRCBot):
 				if arch in self.supported_capstone_archs.keys():
 					bin_opcodes=""
 					try:
-						bin_opcodes = literal_eval("'"+opcodes+"'")
+						bin_opcodes = str(literal_eval("'"+opcodes+"'"))
 					except:
 						self.send_msg(dest,"Error: Can't convert '%s' to bytes" % (opcodes))
 						return
