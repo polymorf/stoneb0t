@@ -256,14 +256,14 @@ class IRCBot(irc.bot.SingleServerIRCBot):
 		msg = "Available assembler archs :"
 		self.send_msg(dest,msg)
 		for arch in sorted(self.supported_keystone_archs.keys()):
-			msg="\t%s%s%s" % (arch," "*(12-len(arch)),self.supported_keystone_archs[arch]["desc"])
+			msg="    %s%s%s" % (arch," "*(12-len(arch)),self.supported_keystone_archs[arch]["desc"])
 			self.send_msg(dest,msg)
 
 	def __send_disassembler_archlist(self,dest):
 		msg = "Available disassembler archs :"
 		self.send_msg(dest,msg)
 		for arch in sorted(self.supported_capstone_archs.keys()):
-			msg="\t%s%s%s" % (arch," "*(12-len(arch)),self.supported_capstone_archs[arch]["desc"])
+			msg="    %s%s%s" % (arch," "*(12-len(arch)),self.supported_capstone_archs[arch]["desc"])
 			self.send_msg(dest,msg)
 
 	def __send_help(self,dest):
@@ -271,12 +271,12 @@ class IRCBot(irc.bot.SingleServerIRCBot):
 		capstone_version = ".".join(map(str,cs_version()))
 		msg = "%s running keystone %s, capstone %s\n" % (self._nick,keystone_version,capstone_version)
 		msg += "help :\n"
-		msg += '\t!list-assembler-arch    : list available assembler archs\n'
-		msg += '\t!list-disassembler-arch : list available disassembler archs\n'
-		msg += '\t!d.ARCH OPCODES	      : disassemble opcodes\n'
-		msg += '\t\texample: !d.arm \\x10\\x00\\xa0\\xe3\\x00\\x10\\xa0\\xe1\n'
-		msg += '\t!a.ARCH ASM		      : assemble assembly\n'
-		msg += '\t\texample: !a.arm mov r0,0x10; mov r1, r0\n'
+		msg += '    !list-assembler-arch    : list available assembler archs\n'
+		msg += '    !list-disassembler-arch : list available disassembler archs\n'
+		msg += '    !d.ARCH OPCODES         : disassemble opcodes\n'
+		msg += '        example: !d.arm \\x10\\x00\\xa0\\xe3\\x00\\x10\\xa0\\xe1\n'
+		msg += '    !a.ARCH ASM             : assemble assembly\n'
+		msg += '        example: !a.arm mov r0,0x10; mov r1, r0\n'
 		self.send_msg(dest,msg)
 
 	def assemble(self,opcodes,arch):
