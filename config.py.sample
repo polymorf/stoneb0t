@@ -1,0 +1,8 @@
+class Config():
+	def __init__(self):
+		self.server = "irc.freenode.net"
+		self.port   = 6667
+		self.SSL	= False
+		self.channel = "#stonetest"
+		self.server_password = ""
+		self.nick = "stoneb0t"
