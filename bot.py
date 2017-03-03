@@ -33,6 +33,11 @@ class IRCBot(irc.bot.SingleServerIRCBot):
 			connection.join(self._channel)
 
 	def on_join(self, connection, event):
+		keystone_version = ".".join(map(str,ks_version()))
+		capstone_version = ".".join(map(str,cs_version()))
+		msg = "%s running keystone %s, capstone %s\n" % (self._nick,keystone_version,capstone_version)
+		ch = event.target
+		self.send_msg(ch,msg)
 		pass
 
 	def __get_supported_capstone_archs(self):
