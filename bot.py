@@ -37,8 +37,9 @@ class IRCBot(irc.bot.SingleServerIRCBot):
 		capstone_version = ".".join(map(str,cs_version()))
 		msg = "%s running keystone %s, capstone %s\n" % (self._nick,keystone_version,capstone_version)
 		ch = event.target
-		self.send_msg(ch,msg)
-		pass
+		f = event.source
+		if self._nick+'!' in f:
+			self.send_msg(ch,msg)
 
 	def __get_supported_capstone_archs(self):
 		capstone_archs={}
