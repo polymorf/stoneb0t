@@ -290,8 +290,9 @@ class IRCBot(irc.bot.SingleServerIRCBot):
 			ks = Ks(arch["KS_ARCH"], arch["KS_MODE"])
 			encoding, count = ks.asm(opcodes)
 			out=""
-			for i in encoding:
-				out+="\\x%02x" % i
+			if count > 0 and encoding != None:
+				for i in encoding:
+					out+="\\x%02x" % i
 			return out
 		except KsError as e:
 			return "ERROR : %s" % (e)
