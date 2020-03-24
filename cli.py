@@ -266,6 +266,11 @@ class botCli():
 			if count > 0 and encoding != None:
 				for i in encoding:
 					out+="\\x%02x" % i
+			if count > 0 and encoding != None:
+				out+="\n"
+			if count > 0 and encoding != None:
+				for i in encoding:
+					out+="%02x " % i
 			return out
 		except KsError as e:
 			return "ERROR : %s" % (e)
@@ -306,7 +311,10 @@ class botCli():
 				if arch in self.supported_capstone_archs.keys():
 					bin_opcodes=""
 					try:
-						bin_opcodes = str(literal_eval("'"+opcodes+"'"))
+						if "\\x" in opcodes:
+							bin_opcodes = str(literal_eval("'"+opcodes+"'"))
+						else:
+							bin_opcodes = opcodes.replace(" ","").decode("hex")
 					except:
 						self.send_msg(dest,"Error: Can't convert '%s' to bytes" % (opcodes))
 						return
