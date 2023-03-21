@@ -312,7 +312,7 @@ class botCli():
 					bin_opcodes=""
 					try:
 						if "\\x" in opcodes:
-							bin_opcodes = str(literal_eval("'"+opcodes+"'"))
+							bin_opcodes = literal_eval("b'"+opcodes+"'")
 						else:
 							bin_opcodes = opcodes.replace(" ","").decode("hex")
 					except:
